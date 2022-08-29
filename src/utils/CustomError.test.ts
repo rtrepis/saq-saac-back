@@ -7,15 +7,15 @@ describe("Given the ErrorCustom class", () => {
       const expectedPrivateMessage = "Private message";
       const expectedPublicMessage = "Public message";
 
-      const resultError = new CustomError(
+      const result = new CustomError(
         expectedStatus,
         expectedPrivateMessage,
         expectedPublicMessage
       );
 
-      expect(resultError.statusCode).toBe(expectedStatus);
-      expect(resultError.message).toBe(expectedPrivateMessage);
-      expect(resultError.publicMessage).toBe(expectedPublicMessage);
+      expect(result.statusCode).toBe(expectedStatus);
+      expect(result.message).toBe(expectedPrivateMessage);
+      expect(result.publicMessage).toBe(expectedPublicMessage);
     });
   });
 });

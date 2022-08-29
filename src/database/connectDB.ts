@@ -1,0 +1,22 @@
+import "../loadEnvironment";
+import mongoose from "mongoose";
+import Debug from "debug";
+import chalk from "chalk";
+
+const debug = Debug("seq-saac:connectDatabase:");
+
+const connectDB = (mongoUrl: string) =>
+  new Promise((resolve, reject) => {
+    mongoose.connect(mongoUrl, (error) => {
+      if (error) {
+        debug(chalk.red("Error connecting to database", error.message));
+        reject(error);
+        return;
+      }
+
+      debug(chalk.green("Connected to database"));
+      resolve(true);
+    });
+  });
+
+export default connectDB;

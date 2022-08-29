@@ -4,7 +4,7 @@ export interface UserData {
   id: string;
   userName: string;
   image?: string;
-  passwd: string;
+  passwordHash: string;
 }
 
 const userSchema = new Schema({
@@ -13,7 +13,7 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-  passwd: {
+  passwordHash: {
     type: String,
     required: true,
   },

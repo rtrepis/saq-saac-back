@@ -5,11 +5,13 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "ts:dev": "tsc -w",
+    "ts-dev": "tsc -w",
     "start": "node .",
     "start:dev": "nodemon -q",
     "prepare": "husky install",
-    "test": "jest src --passWithNoTests"
+    "test": "jest src --passWithNoTests",
+    "test-dev": "jest src --watchAll",
+    "test-coverage": "jest src --coverage --passWithNoTests"
   },
   "keywords": [],
   "author": "",

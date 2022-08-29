@@ -11,7 +11,7 @@
     "prepare": "husky install",
     "test": "jest src",
     "test-dev": "jest src --watchAll",
-    "test-coverage": "jest src --coverage"
+    "test-coverage": "jest src --coverage --watchAll=false"
   },
   "keywords": [],
   "author": "",

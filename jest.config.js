@@ -3,10 +3,11 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   collectCoverageFrom: [
-    "src/*/.ts",
+    "src/**/*.ts",
     "!src/index.ts",
     "!src/server/startServer.ts",
     "!src/loadEnvironment.ts",
     "!src/server/index.ts",
+    "!src/database/connectDB.ts",
   ],
 };

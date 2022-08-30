@@ -9,12 +9,11 @@ const registerUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  const user: UserRegister = req.body;
-
-  user.password = await hashCreator(user.password);
-
   try {
+    const user: UserRegister = req.body;
+
     const newUser = await User.create(user);
+    user.password = await hashCreator(user.password);
 
     res.status(201).json({ user: newUser });
   } catch (error) {

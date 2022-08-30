@@ -1,19 +1,12 @@
 import { model, Schema } from "mongoose";
 
-export interface UserData {
-  id: string;
-  userName: string;
-  image?: string;
-  passwordHash: string;
-}
-
 const userSchema = new Schema({
   userName: {
     type: String,
     required: true,
     unique: true,
   },
-  passwordHash: {
+  password: {
     type: String,
     required: true,
   },

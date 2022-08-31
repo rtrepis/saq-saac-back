@@ -12,10 +12,10 @@ const registerUser = async (
   try {
     const user: UserRegister = req.body;
 
-    const newUser = await User.create(user);
     user.password = await hashCreator(user.password);
+    await User.create(user);
 
-    res.status(201).json({ user: newUser });
+    res.status(201).json({ message: "User successfully created" });
   } catch (error) {
     const customError = new CustomError(
       400,

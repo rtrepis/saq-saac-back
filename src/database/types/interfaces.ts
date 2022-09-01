@@ -13,3 +13,13 @@ export interface UserData {
   userName: string;
   password: string;
 }
+
+export interface UserJwtPayload {
+  id: string;
+  userName: string;
+}
+
+export interface UserLogin {
+  userName: string;
+  password: string;
+}

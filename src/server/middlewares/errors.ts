@@ -24,7 +24,7 @@ export const generalError = (
 
   if (error instanceof ValidationError) {
     errorCode = error.statusCode ?? 400;
-    errorMessage = "User o password invalid";
+    errorMessage = "User or password invalid";
     error.details.body.forEach((element) => {
       debug(chalk.red(element.message));
     });

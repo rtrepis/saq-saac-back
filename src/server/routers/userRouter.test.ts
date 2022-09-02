@@ -34,7 +34,7 @@ describe("Give a endpoint POST /users/registers/ ", () => {
 
     describe("When it receives a request without password", () => {
       test("Then it should response with status 400 and a message 'Wrong data'", async () => {
-        const message = "User o password invalid";
+        const message = "User or password invalid";
         const user = {
           userName: "Evaristo",
           password: "",

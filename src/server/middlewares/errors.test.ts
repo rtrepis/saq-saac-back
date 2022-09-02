@@ -34,30 +34,16 @@ describe("Give the generalErrors", () => {
     json: jest.fn(),
   };
   const next = jest.fn();
-  describe("Then it receives response with a custom error", () => {
-    test("Then it should call the response with this error", () => {
-      const error = new Error() as CustomError;
-      error.statusCode = 409;
-      error.message = "Private Message";
-      error.publicMessage = "Public Message";
+  describe("Then it receives response without a custom error", () => {
+    test("Then it should call the response with error code 500 and there message", () => {
+      const errorNull = new Error() as CustomError;
+      const expectCode = 500;
+      const expectPublicMessage = "Internal Server Error";
 
-      generalError(error, req as Request, res as Response, next);
+      generalError(errorNull, req as Request, res as Response, next);
 
-      expect(res.status).toHaveBeenCalledWith(error.statusCode);
-      expect(res.json).toHaveBeenCalledWith({ error: error.publicMessage });
-    });
-
-    describe("Then it receives response without a custom error", () => {
-      test("Then it should call the response with error code 500 and 'There was an error' message", () => {
-        const errorNull = new Error() as CustomError;
-        const expectCode = 500;
-        const expectPublicMessage = "Internal Server Error";
-
-        generalError(errorNull, req as Request, res as Response, next);
-
-        expect(res.status).toHaveBeenCalledWith(expectCode);
-        expect(res.json).toHaveBeenCalledWith({ error: expectPublicMessage });
-      });
+      expect(res.status).toHaveBeenCalledWith(expectCode);
+      expect(res.json).toHaveBeenCalledWith({ error: expectPublicMessage });
     });
   });
 });

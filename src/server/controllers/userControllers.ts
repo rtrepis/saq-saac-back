@@ -58,13 +58,14 @@ export const loginUser = async (
   }
 
   try {
-    const isPasswdValid = await hashCompare(
+    const isPasswordValid = await hashCompare(
       user.password,
       findUsers[0].password
     );
-    if (!isPasswdValid) {
+    if (!isPasswordValid) {
       userError.message = "Invalid password";
       next(userError);
+
       return;
     }
   } catch (error) {
@@ -87,5 +88,6 @@ export const loginUser = async (
       token: createToken(payLoad),
     },
   };
+
   res.status(200).json(responseUserData);
 };

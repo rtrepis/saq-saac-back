@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from "express";
 import { ValidationError } from "express-validation";
 import CustomError from "../../utils/CustomError";
 
-const debug = Debug("seq-saac:server:middlewares:errors");
+const debug = Debug("seqSaac:errors");
 
 export const notFoundError = (req: Request, res: Response) => {
   res.status(404).json({ error: "Endpoint not found" });
@@ -18,12 +18,11 @@ export const generalError = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
 ) => {
-  let errorCode = error.statusCode ?? 500;
+  const errorCode = error.statusCode ?? 500;
   let errorMessage = error.publicMessage ?? "Internal Server Error";
   debug(chalk.red(error.message));
 
   if (error instanceof ValidationError) {
-    errorCode = error.statusCode ?? 400;
     errorMessage = "User or password invalid";
     error.details.body.forEach((element) => {
       debug(chalk.red(element.message));

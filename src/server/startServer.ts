@@ -4,7 +4,7 @@ import chalk from "chalk";
 import app from "./index";
 import CustomError from "../utils/CustomError";
 
-const debug = Debug("seq-saac:server:startServer");
+const debug = Debug("seqSaac:server:startServer");
 
 const startServer = (port: number) =>
   new Promise((resolve, reject) => {

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import Debug from "debug";
 import chalk from "chalk";
 
-const debug = Debug("seq-saac:connectDatabase:");
+const debug = Debug("seqSaac:connectDatabase:");
 
 const connectDB = (mongoUrl: string) =>
   new Promise((resolve, reject) => {

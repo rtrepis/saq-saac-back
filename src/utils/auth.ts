@@ -12,4 +12,6 @@ export const hashCompare = (text: string, hash: string) =>
   bcrypt.compare(text, hash);
 
 export const createToken = (payload: UserJwtPayload) =>
-  jwt.sign(payload, process.env.SECRET);
+  process.env.NODE_ENV === "test"
+    ? jwt.sign(payload, "testSecret")
+    : jwt.sign(payload, process.env.SECRET);

@@ -1,41 +1,18 @@
+import chalk from "chalk";
+import Debug from "debug";
 import { NextFunction, Request, Response } from "express";
-import User from "../../database/models/User";
+import User from "../../../database/models/User";
 import {
   UserData,
   UserJwtPayload,
   UserLogin,
-  UserRegister,
-} from "../../database/types/interfaces";
-import { createToken, hashCompare, hashCreator } from "../../utils/auth";
-import CustomError from "../../utils/CustomError";
+} from "../../../database/types/interfaces";
+import { createToken, hashCompare } from "../../../utils/auth";
+import CustomError from "../../../utils/CustomError";
 
-export const registerUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const user: UserRegister = req.body;
+const loginUser = async (req: Request, res: Response, next: NextFunction) => {
+  const debug = Debug("seqSaac:loginUser:");
 
-    user.password = await hashCreator(user.password);
-    await User.create(user);
-
-    res.status(201).json({ message: "User successfully created" });
-  } catch (error) {
-    const customError = new CustomError(
-      400,
-      error.message,
-      "Error creating new user"
-    );
-    next(customError);
-  }
-};
-
-export const loginUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
   const user = req.body as UserLogin;
 
   const userError = new CustomError(
@@ -64,8 +41,9 @@ export const loginUser = async (
     );
     if (!isPasswordValid) {
       userError.message = "Invalid password";
-      next(userError);
+      debug(chalk.red(findUsers[0].userName));
 
+      next(userError);
       return;
     }
   } catch (error) {
@@ -89,5 +67,8 @@ export const loginUser = async (
     },
   };
 
+  debug(chalk.green(findUsers[0].userName));
   res.status(200).json(responseUserData);
 };
+
+export default loginUser;

@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import bcrypt from "bcryptjs";
 import User from "../../../database/models/User";
 import CustomError from "../../../utils/CustomError";
 import loginUser from "./loginController";

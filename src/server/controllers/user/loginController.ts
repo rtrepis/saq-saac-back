@@ -28,7 +28,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     const finalError = new CustomError(
       403,
       `name: ${(error as Error).name}; message: ${(error as Error).message}`,
-      "Invalid user/password"
+      "Invalid user or password"
     );
     next(finalError);
     return;
@@ -42,7 +42,6 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     if (!isPasswordValid) {
       userError.message = "Invalid password";
       debug(chalk.red(findUsers[0].userName));
-
       next(userError);
       return;
     }
@@ -50,7 +49,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     const finalError = new CustomError(
       403,
       `name: ${(error as Error).name}; message:  ${(error as Error).message}`,
-      "Invalid user/password"
+      "Invalid user or password"
     );
     next(finalError);
     return;

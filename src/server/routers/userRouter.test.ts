@@ -19,11 +19,12 @@ beforeAll(async () => {
   await connectDB(mongoUrl);
 
   userDB.password = await hashCreator(userDB.password);
-  await User.create(userDB);
+  User.create(userDB);
 });
 
 afterAll(async () => {
-  mongoose.connection.close();
+  User.deleteMany();
+  await mongoose.connection.close();
   await mongoServer.stop();
 });
 
@@ -75,6 +76,7 @@ describe("Give a endpoint POST /users/login/ ", () => {
         .expect(expectStatusCode);
     });
   });
+
   describe("When receive json with userName 'TestUser' and password 'Invalidate' ", () => {
     test("Then it should response with code status 403 forbidden", async () => {
       const userLogin = {

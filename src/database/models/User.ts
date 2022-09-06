@@ -10,7 +10,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  sequence: [{ type: Schema.Types.ObjectId, ref: "Sequence" }],
 });
 
 const User = model("User", userSchema, "users");

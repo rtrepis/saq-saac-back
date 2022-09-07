@@ -12,6 +12,10 @@ const sequenceSchema = new Schema({
   private: {
     type: Boolean,
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Sequence = model("Sequence", sequenceSchema, "sequences");

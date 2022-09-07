@@ -93,6 +93,22 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "SequencesPublic",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "SequencesPublic Heroku",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
     }
   ],
   "event": [

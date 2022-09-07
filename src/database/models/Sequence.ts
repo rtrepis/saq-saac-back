@@ -9,6 +9,9 @@ const sequenceSchema = new Schema({
     type: [Number],
     required: true,
   },
+  private: {
+    type: Boolean,
+  },
 });
 
 const Sequence = model("Sequence", sequenceSchema, "sequences");

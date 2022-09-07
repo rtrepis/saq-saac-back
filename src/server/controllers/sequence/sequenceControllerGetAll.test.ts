@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import Sequence from "../../../database/models/Sequence";
-import CustomError from "../../../utils/CustomError";
 import getAllSequencePublic from "./sequencesController";
 
 describe("Given a sequence controller", () => {

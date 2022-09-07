@@ -15,3 +15,6 @@ export const createToken = (payload: UserJwtPayload) =>
   process.env.NODE_ENV === "test"
     ? jwt.sign(payload, "testSecret")
     : jwt.sign(payload, process.env.SECRET);
+
+export const verifyToken = (token: string) =>
+  jwt.verify(token, process.env.SECRET);

@@ -6,5 +6,4 @@ interface SequenceI {
   private: boolean;
   owner: Schema.Types.ObjectId;
 }
-
 export default SequenceI;

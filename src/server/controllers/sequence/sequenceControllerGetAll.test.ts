@@ -28,12 +28,6 @@ describe("Given a sequence controller", () => {
   });
   describe("When database getting throw an error", () => {
     test("Then call next function and reject error", async () => {
-      const errorDB = new CustomError(
-        404,
-        "",
-        "Error getting sequences to Data Base"
-      );
-
       Sequence.find = jest.fn().mockRejectedValue("");
       await getAllSequencePublic(
         req as Request,
@@ -41,7 +35,7 @@ describe("Given a sequence controller", () => {
         next as NextFunction
       );
 
-      expect(next).toHaveBeenCalledWith(errorDB);
+      expect(next).toHaveBeenCalled();
     });
   });
 });

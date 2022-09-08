@@ -18,3 +18,9 @@
   - req.body.json = {"name": sting, "pictograms": number[idPictogram], "id": string, "private": boolean}
 
   - res.body.json = {"sequence": { "name", "pictograms", "private", "owner", "id"}}
+
+- [GET] sequence/owner/
+
+  - req.athoritzation = "Bearer validateToken"
+
+  - res.body.json = { "sequences": {"userName", "sequencesCreate": [{"name"", "pictograms": [idPictograms], "private", "owner", "id"}] "id"} }

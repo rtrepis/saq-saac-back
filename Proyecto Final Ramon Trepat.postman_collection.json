@@ -57,7 +57,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"userName\":\"Maria\",\n    \"password\": \"1234\"\n}",
+          "raw": "{\n    \"userName\":\"Laia\",\n    \"password\": \"1234\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -107,6 +107,140 @@
       "request": {
         "method": "GET",
         "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Sequence Create",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTlmODU3NTI4Nzc4NzQxMTFjNTVmYSIsInVzZXJOYW1lIjoiTWFyaWEiLCJpYXQiOjE2NjI2NDYzNzN9.LnqlpEjokTxlv5phQJobb4wJIGchVEcQmHT5Rrutwkk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\" : \"Rentar mans 3\",\n    \"pictograms\": [ 11737, 8975, 35729, 2443, 11739],\n    \"private\": true\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url-local}}sequences/create/",
+          "host": ["{{url-local}}sequences"],
+          "path": ["create", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sequence Create Heroku",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTk5ZTI5MmRjYWYxNWQxNWUxMDUzYSIsInVzZXJOYW1lIjoiTGFpYSIsImlhdCI6MTY2MjYyMzI5M30.6UgqXvVX86pCwN2VZMILnkOZwG0wTAAyWU9fj8WBkvE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\" : \"Rentar mans 14\",\n    \"pictograms\": [ 11737, 8975, 35729, 2443, 11739],\n    \"private\": false\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url-heroku}}sequences/create/",
+          "host": ["{{url-heroku}}sequences"],
+          "path": ["create", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sequence owner",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTlmODU3NTI4Nzc4NzQxMTFjNTVmYSIsInVzZXJOYW1lIjoiTWFyaWEiLCJpYXQiOjE2NjI2NDYzNzN9.LnqlpEjokTxlv5phQJobb4wJIGchVEcQmHT5Rrutwkk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url-local}}sequences/owner/",
+          "host": ["{{url-local}}sequences"],
+          "path": ["owner", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sequence owner Heroku",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTlmODU3NTI4Nzc4NzQxMTFjNTVmYSIsInVzZXJOYW1lIjoiTWFyaWEiLCJpYXQiOjE2NjI2NDYzNzN9.LnqlpEjokTxlv5phQJobb4wJIGchVEcQmHT5Rrutwkk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url-heroku}}sequences/owner/",
+          "host": ["{{url-heroku}}sequences"],
+          "path": ["owner", ""]
+        }
       },
       "response": []
     }

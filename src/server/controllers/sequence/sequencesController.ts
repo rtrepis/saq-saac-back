@@ -3,7 +3,6 @@ import Sequence from "../../../database/models/Sequence";
 import User from "../../../database/models/User";
 import CustomError from "../../../utils/CustomError";
 import { CustomRequest } from "../../types/CustomRequest";
-import SequenceI from "../../types/interfaces";
 
 const getAllSequencePublic = async (
   req: Request,
@@ -35,10 +34,9 @@ export const createSequence = async (
 
   try {
     const newSequence = await Sequence.create(sequenceData);
-
-    const user = await User.findById(req.payload.id);
-    user.sequences.push(newSequence.id);
-    await user.save();
+    const user = await User.findById(newSequence.owner);
+    user.sequencesCreate.push(newSequence.id);
+    user.save();
 
     res.status(201).json({ sequence: newSequence });
   } catch (error) {

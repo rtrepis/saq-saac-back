@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Sequence from "../../../database/models/Sequence";
+import User from "../../../database/models/User";
 import CustomError from "../../../utils/CustomError";
 import { CustomRequest } from "../../types/CustomRequest";
 
@@ -29,9 +30,13 @@ export const createSequence = async (
   next: NextFunction
 ) => {
   const sequenceData = req.body;
+  sequenceData.owner = req.payload.id;
 
   try {
     const newSequence = await Sequence.create(sequenceData);
+    const user = await User.findById(newSequence.owner);
+    user.sequencesCreate.push(newSequence.id);
+    user.save();
 
     res.status(201).json({ sequence: newSequence });
   } catch (error) {

@@ -41,8 +41,8 @@ describe("Given a function createSequence", () => {
 
   User.findById = jest.fn().mockResolvedValue({
     id: userFind,
-    sequence: [],
-    save: jest.fn(),
+    sequencesCreate: [sequenceId],
+    save: jest.fn().mockReturnThis(),
   });
 
   describe("When it receives a response with a sequence", () => {

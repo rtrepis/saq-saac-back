@@ -10,7 +10,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  sequences: [
+  sequencesCreate: [
     {
       type: Schema.Types.ObjectId,
       ref: "Sequence",

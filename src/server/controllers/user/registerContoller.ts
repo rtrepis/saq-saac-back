@@ -2,7 +2,7 @@ import chalk from "chalk";
 import Debug from "debug";
 import { NextFunction, Request, Response } from "express";
 import User from "../../../database/models/User";
-import { UserRegister } from "../../../database/types/interfaces";
+import { UserRegister } from "../../../database/types/UsersInterfaces";
 import { hashCreator } from "../../../utils/auth";
 import CustomError from "../../../utils/CustomError";
 

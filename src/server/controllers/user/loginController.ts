@@ -6,7 +6,7 @@ import {
   UserData,
   UserJwtPayload,
   UserLogin,
-} from "../../../database/types/interfaces";
+} from "../../../database/types/UsersInterfaces";
 import { createToken, hashCompare } from "../../../utils/auth";
 import CustomError from "../../../utils/CustomError";
 

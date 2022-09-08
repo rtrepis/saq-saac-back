@@ -1,5 +1,4 @@
 import { NextFunction, Response } from "express";
-import Sequence from "../../../database/models/Sequence";
 import User from "../../../database/models/User";
 import CustomError from "../../../utils/CustomError";
 import { CustomRequest } from "../../types/CustomRequest";

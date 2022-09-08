@@ -4,7 +4,7 @@ import User from "../../../database/models/User";
 import CustomError from "../../../utils/CustomError";
 import { CustomRequest } from "../../types/CustomRequest";
 
-const getAllSequencePublic = async (
+export const getAllSequencePublic = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -48,4 +48,3 @@ export const createSequence = async (
     next(customError);
   }
 };
-export default getAllSequencePublic;

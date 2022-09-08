@@ -1,23 +1,29 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import Sequence from "../../../database/models/Sequence";
-import { getAllSequencePublic } from "./sequencesController";
+import { CustomRequest } from "../../types/CustomRequest";
+import { getSequencesOwner } from "./sequencesControllerGetOwner";
 
-describe("Given a sequence controller", () => {
-  const req: Partial<Request> = {};
+describe("Given a sequence controller getOwner", () => {
+  let req: Partial<CustomRequest> = {};
   const res: Partial<Response> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
   };
   const next = jest.fn() as Partial<NextFunction>;
 
-  describe("When getAllSequence it's called and it receives a response ", () => {
+  describe("When getSequenceOwner it's called and it receives a response ", () => {
     test("Then it should call the response method status with 200", async () => {
       const status = 200;
+      const expectReturn = "sequence";
+      req = {
+        payload: { id: "2345" },
+      } as Partial<CustomRequest>;
 
-      Sequence.find = jest.fn();
+      Sequence.find = jest.fn().mockReturnThis();
+      Sequence.populate = jest.fn().mockReturnValue({ expectReturn });
 
-      await getAllSequencePublic(
-        req as Request,
+      await getSequencesOwner(
+        req as CustomRequest,
         res as Response,
         next as NextFunction
       );
@@ -28,8 +34,8 @@ describe("Given a sequence controller", () => {
   describe("When database getting throw an error", () => {
     test("Then call next function and reject error", async () => {
       Sequence.find = jest.fn().mockRejectedValue("");
-      await getAllSequencePublic(
-        req as Request,
+      await getSequencesOwner(
+        req as CustomRequest,
         res as Response,
         next as NextFunction
       );

@@ -5,12 +5,14 @@ import {
   getAllSequencePublic,
 } from "../controllers/sequence/sequencesController";
 import { getSequencesOwner } from "../controllers/sequence/sequencesControllerGetOwner";
+import getId from "../controllers/sequence/sequencesControllerGetId";
 import authentication from "../middlewares/authentication";
 import SequenceJoi from "../models/SequenceJoi";
 
 const sequencesRouter = express.Router();
 
 sequencesRouter.get("/", getAllSequencePublic);
+
 sequencesRouter.post(
   "/create/",
   authentication,
@@ -18,5 +20,6 @@ sequencesRouter.post(
   createSequence
 );
 sequencesRouter.get("/owner/", authentication, getSequencesOwner);
+sequencesRouter.get("/:id", getId);
 
 export default sequencesRouter;

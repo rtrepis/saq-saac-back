@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import Sequence from "../../../database/models/Sequence";
-import { getAllSequencePublic } from "./sequencesController";
 import getId from "./sequencesControllerGetId";
 
 describe("Given a sequence controller get Id", () => {

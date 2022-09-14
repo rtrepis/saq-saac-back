@@ -98,7 +98,12 @@
       "name": "SequencesPublic",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{url-local}}sequences/",
+          "host": ["{{url-local}}sequences"],
+          "path": [""]
+        }
       },
       "response": []
     },
@@ -106,7 +111,12 @@
       "name": "SequencesPublic Heroku",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{url-heroku}}sequences/",
+          "host": ["{{url-heroku}}sequences"],
+          "path": [""]
+        }
       },
       "response": []
     },
@@ -240,6 +250,32 @@
           "raw": "{{url-heroku}}sequences/owner/",
           "host": ["{{url-heroku}}sequences"],
           "path": ["owner", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sequence Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url-local}}sequences/63199e9c8aa067d2f0931a4e",
+          "host": ["{{url-local}}sequences"],
+          "path": ["63199e9c8aa067d2f0931a4e"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sequence Id Heroku",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url-heroku}}sequences/63199e9c8aa067d2f0931a4e",
+          "host": ["{{url-heroku}}sequences"],
+          "path": ["63199e9c8aa067d2f0931a4e"]
         }
       },
       "response": []

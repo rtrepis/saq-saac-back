@@ -21,5 +21,6 @@ sequencesRouter.post(
 );
 sequencesRouter.get("/owner/", authentication, getSequencesOwner);
 sequencesRouter.get("/:id", getId);
+sequencesRouter.post("/delete/:id", getId);
 
 export default sequencesRouter;

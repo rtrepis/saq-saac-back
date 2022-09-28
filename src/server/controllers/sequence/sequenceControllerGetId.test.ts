@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Sequence from "../../../database/models/Sequence";
+import { CustomRequest } from "../../types/CustomRequest";
 import getId from "./sequencesControllerGetId";
 
 describe("Given a sequence controller get Id", () => {
@@ -25,7 +26,7 @@ describe("Given a sequence controller get Id", () => {
 
       Sequence.findById = jest.fn().mockReturnValue(mockSequence);
 
-      await getId(req as Request, res as Response, next as NextFunction);
+      await getId(req as CustomRequest, res as Response, next as NextFunction);
 
       expect(res.status).toHaveBeenCalledWith(status);
     });
@@ -35,7 +36,7 @@ describe("Given a sequence controller get Id", () => {
     test("Then call next function and reject error", async () => {
       Sequence.findById = jest.fn().mockRejectedValue("");
 
-      await getId(req as Request, res as Response, next as NextFunction);
+      await getId(req as CustomRequest, res as Response, next as NextFunction);
 
       expect(next).toHaveBeenCalled();
     });
@@ -54,7 +55,7 @@ describe("Given a sequence controller get Id", () => {
 
       Sequence.findById = jest.fn().mockReturnValue(mockSequence);
 
-      await getId(req as Request, res as Response, next as NextFunction);
+      await getId(req as CustomRequest, res as Response, next as NextFunction);
 
       expect(res.status).toHaveBeenCalledWith(status);
     });

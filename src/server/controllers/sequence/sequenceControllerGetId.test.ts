@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import Sequence from "../../../database/models/Sequence";
+import SequenceI from "../../types/interfaces";
 import getId from "./sequencesControllerGetId";
 
 jwt.verify = jest.fn().mockReturnValue({
@@ -78,7 +79,7 @@ describe("Given a sequence controller get Id", () => {
         params: { id: sequenceId },
         get: jest.fn().mockReturnValue("Bearer right"),
       };
-      const mockSequence = {
+      const mockSequence: SequenceI = {
         id: sequenceId,
         name: "",
         owner: { id: "1234" },

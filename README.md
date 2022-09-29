@@ -10,17 +10,17 @@
 
 - [GET] sequence/
 
-  - res.body.json = {sequence : {"name": sting, "pictograms": number[idPictogram], "id": string, "private": false } }
+  - res.body.json = {sequence : {"name": sting, "pictograms": number[idPictogram], "id": string, "privately": false } }
 
 - [GET] sequence/create/
 
   - req.athoritzation = "Bearer validateToken"
-  - req.body.json = {"name": sting, "pictograms": number[idPictogram], "id": string, "private": boolean}
+  - req.body.json = {"name": sting, "pictograms": number[idPictogram], "id": string, "privately": boolean}
 
-  - res.body.json = {"sequence": { "name", "pictograms", "private", "owner", "id"}}
+  - res.body.json = {"sequence": { "name", "pictograms", "privately", "owner", "id"}}
 
 - [GET] sequence/owner/
 
   - req.athoritzation = "Bearer validateToken"
 
-  - res.body.json = { "sequences": {"userName", "sequencesCreate": [{"name"", "pictograms": [idPictograms], "private", "owner", "id"}] "id"} }
+  - res.body.json = { "sequences": {"userName", "sequencesCreate": [{"name"", "pictograms": [idPictograms], "privately", "owner", "id"}] "id"} }

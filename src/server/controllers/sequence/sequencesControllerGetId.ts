@@ -1,10 +1,9 @@
-import { NextFunction, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Sequence from "../../../database/models/Sequence";
 import { verifyToken } from "../../../utils/auth";
 import CustomError from "../../../utils/CustomError";
-import { CustomRequest } from "../../types/CustomRequest";
 
-const getId = async (req: CustomRequest, res: Response, next: NextFunction) => {
+const getId = async (req: Request, res: Response, next: NextFunction) => {
   const { id: idSequence } = req.params;
 
   try {
@@ -12,26 +11,28 @@ const getId = async (req: CustomRequest, res: Response, next: NextFunction) => {
       id: true,
     });
 
-    if (sequenceData.private) {
-      const userIdError = new CustomError(
-        404,
-        "not authorized by this resource",
-        "not authorized by this resource"
-      );
-
+    if (sequenceData.privately) {
       const authenticationData = req.get("Authorization");
-      const token = authenticationData.slice(7);
-      const userToken = verifyToken(token);
-      if (typeof userToken === "string") {
-        next(userIdError);
-        return;
-      }
+      if (authenticationData !== "Bearer null") {
+        const verifyTokenError = new CustomError(
+          500,
+          "Server internal Error",
+          "Server internal Error"
+        );
 
-      if (userToken.id === sequenceData.owner.id) {
-        res.status(200).json({ sequences: sequenceData });
-        return;
-      }
+        const token = authenticationData.slice(7);
+        const userToken = verifyToken(token);
 
+        if (typeof userToken === "string") {
+          next(verifyTokenError);
+          return;
+        }
+
+        if (userToken.id === sequenceData.owner.id) {
+          res.status(200).json({ sequences: sequenceData });
+          return;
+        }
+      }
       res.status(401).json({ error: "The resource is not published" });
       return;
     }

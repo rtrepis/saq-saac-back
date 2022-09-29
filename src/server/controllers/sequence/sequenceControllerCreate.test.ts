@@ -8,7 +8,7 @@ describe("Given a function createSequence", () => {
   const bodyRequest = {
     pictograms: [11737, 8975, 35729, 2443, 11739],
     name: "Rentar mans",
-    private: false,
+    privately: false,
     owner: "",
   };
 

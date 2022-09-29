@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import Sequence from "../../../database/models/Sequence";
+import CustomError from "../../../utils/CustomError";
 import SequenceI from "../../types/interfaces";
 import getId from "./sequencesControllerGetId";
 
@@ -93,6 +94,25 @@ describe("Given a sequence controller get Id", () => {
       await getId(req as Request, res as Response, next as NextFunction);
 
       expect(res.status).toHaveBeenCalledWith(status);
+    });
+  });
+
+  describe("When verifyToken reject error", () => {
+    test("Then it should call the response status with 201", async () => {
+      const expectNextWithError = new CustomError(
+        500,
+        "Server internal Error",
+        "Server internal Error"
+      );
+      req = {
+        params: { id: sequenceId },
+        get: jest.fn().mockReturnValue("Bearer error"),
+      };
+      jwt.verify = jest.fn().mockReturnValue("crash");
+
+      await getId(req as Request, res as Response, next as NextFunction);
+
+      expect(next).toHaveBeenCalledWith(expectNextWithError);
     });
   });
 });

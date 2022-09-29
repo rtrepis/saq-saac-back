@@ -9,7 +9,7 @@ const sequenceSchema = new Schema({
     type: [Number],
     required: true,
   },
-  private: {
+  privately: {
     type: Boolean,
   },
   owner: {

@@ -1,9 +1,8 @@
-import { Schema } from "mongoose";
-
 interface SequenceI {
+  id?: string;
   name: string;
-  pictograms: [Number];
-  private: boolean;
-  owner: Schema.Types.ObjectId;
+  pictograms: number[];
+  privately: boolean;
+  owner: {};
 }
 export default SequenceI;

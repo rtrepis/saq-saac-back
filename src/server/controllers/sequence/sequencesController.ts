@@ -12,7 +12,7 @@ export const getAllSequencePublic = async (
   let sequences;
 
   try {
-    sequences = await Sequence.find({ private: false });
+    sequences = await Sequence.find({ privately: false });
   } catch (error) {
     const getAllError = new CustomError(
       404,

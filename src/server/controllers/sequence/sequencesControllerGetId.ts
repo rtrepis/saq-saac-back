@@ -13,6 +13,7 @@ const getId = async (req: Request, res: Response, next: NextFunction) => {
 
     if (sequenceData.privately) {
       const authenticationData = req.get("Authorization");
+
       if (authenticationData !== "Bearer null") {
         const verifyTokenError = new CustomError(
           500,

@@ -3,6 +3,6 @@ interface SequenceI {
   name: string;
   pictograms: number[];
   privately: boolean;
-  owner: {};
+  owner: { id: string };
 }
 export default SequenceI;

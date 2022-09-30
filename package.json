@@ -54,7 +54,6 @@
     "express-validation": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.3",
-    "morgan": "^1.10.0",
-    "node": "^16.17.0"
+    "morgan": "^1.10.0"
   }
 }

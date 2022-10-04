@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import Sequence from "../../../database/models/Sequence";
-import { getAllSequencePublic } from "./sequencesController";
+import Sequence from "../../../../database/models/Sequence";
+import { getAllSequencePublic } from "../sequencesController";
 
 describe("Given a sequence controller", () => {
   const req: Partial<Request> = {};

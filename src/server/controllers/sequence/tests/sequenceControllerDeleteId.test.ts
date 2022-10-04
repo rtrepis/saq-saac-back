@@ -1,10 +1,10 @@
 import { Response, NextFunction } from "express";
-import Sequence from "../../../database/models/Sequence";
-import User from "../../../database/models/User";
-import CustomError from "../../../utils/CustomError";
-import { CustomRequest } from "../../types/CustomRequest";
-import SequenceI from "../../types/interfaces";
-import deleteId from "./sequencesControllerDeleteId";
+import Sequence from "../../../../database/models/Sequence";
+import User from "../../../../database/models/User";
+import CustomError from "../../../../utils/CustomError";
+import { CustomRequest } from "../../../types/CustomRequest";
+import SequenceI from "../../../types/interfaces";
+import deleteId from "../sequencesControllerDeleteId";
 
 describe("Given a sequence controller delete id", () => {
   let req: Partial<CustomRequest> = {};

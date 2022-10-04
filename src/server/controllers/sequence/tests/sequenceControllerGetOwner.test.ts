@@ -1,7 +1,7 @@
 import { NextFunction, Response } from "express";
-import Sequence from "../../../database/models/Sequence";
-import { CustomRequest } from "../../types/CustomRequest";
-import { getSequencesOwner } from "./sequencesControllerGetOwner";
+import Sequence from "../../../../database/models/Sequence";
+import { CustomRequest } from "../../../types/CustomRequest";
+import { getSequencesOwner } from "../sequencesControllerGetOwner";
 
 describe("Given a sequence controller getOwner", () => {
   let req: Partial<CustomRequest> = {};

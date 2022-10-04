@@ -10,7 +10,7 @@
 
 - [GET] sequence/
 
-  - res.body.json = {sequence : {"name": sting, "pictograms": number[idPictogram], "id": string, "privately": false } }
+  - res.body.json = {sequences: {"name": sting, "pictograms": number[idPictogram], "id": string, "privately": false } }
 
 - [GET] sequence/:id
 
@@ -30,3 +30,9 @@
   - req.athoritzation = "Bearer validateToken"
 
   - res.body.json = { "sequences": {"userName", "sequencesCreate": [{"name"", "pictograms": [idPictograms], "privately", "owner", "id"}] "id"} }
+
+- [DELETE] sequence/delete/:id
+
+  - req.athoritzation = "Bearer validateToken"
+
+  - res.body.json = { message: "Sequence has been deleted" }

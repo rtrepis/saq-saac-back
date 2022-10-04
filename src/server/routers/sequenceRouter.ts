@@ -9,6 +9,7 @@ import getId from "../controllers/sequence/sequencesControllerGetId";
 import authentication from "../middlewares/authentication";
 import SequenceJoi from "../models/SequenceJoi";
 import deleteId from "../controllers/sequence/sequencesControllerDeleteId";
+import updateId from "../controllers/sequence/sequenceControllerUpdate";
 
 const sequencesRouter = express.Router();
 
@@ -22,7 +23,16 @@ sequencesRouter.post(
 );
 
 sequencesRouter.get("/owner/", authentication, getSequencesOwner);
+
 sequencesRouter.get("/:id", getId);
+
 sequencesRouter.delete("/delete/:id", authentication, deleteId);
+
+sequencesRouter.put(
+  "/update/:id",
+  authentication,
+  validate(SequenceJoi, {}, { abortEarly: false }),
+  updateId
+);
 
 export default sequencesRouter;

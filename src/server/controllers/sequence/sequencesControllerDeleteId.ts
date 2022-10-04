@@ -18,6 +18,7 @@ const deleteId = async (
       "owner",
       { id: true }
     );
+
     if (sequenceData.owner.id !== userId) {
       res.status(401).json({ message: "Unauthorized" });
       return;

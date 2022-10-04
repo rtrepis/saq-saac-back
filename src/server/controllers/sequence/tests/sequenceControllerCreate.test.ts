@@ -1,8 +1,8 @@
 import { NextFunction, Response } from "express";
-import Sequence from "../../../database/models/Sequence";
-import User from "../../../database/models/User";
-import { CustomRequest } from "../../types/CustomRequest";
-import { createSequence } from "./sequencesController";
+import Sequence from "../../../../database/models/Sequence";
+import User from "../../../../database/models/User";
+import { CustomRequest } from "../../../types/CustomRequest";
+import { createSequence } from "../sequencesController";
 
 describe("Given a function createSequence", () => {
   const bodyRequest = {

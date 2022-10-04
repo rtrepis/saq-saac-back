@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import Sequence from "../../../database/models/Sequence";
-import CustomError from "../../../utils/CustomError";
-import SequenceI from "../../types/interfaces";
-import getId from "./sequencesControllerGetId";
+import Sequence from "../../../../database/models/Sequence";
+import CustomError from "../../../../utils/CustomError";
+import SequenceI from "../../../types/interfaces";
+import getId from "../sequencesControllerGetId";
 
 jwt.verify = jest.fn().mockReturnValue({
   id: "1234",

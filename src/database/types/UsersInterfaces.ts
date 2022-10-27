@@ -13,6 +13,8 @@ export interface UserData {
   userName: string;
   password: string;
   sequencesCreate: { id: string[] };
+  email: string;
+  status: "Pending" | "Active";
 }
 
 export interface UserJwtPayload {

@@ -16,6 +16,15 @@ const userSchema = new Schema({
       ref: "Sequence",
     },
   ],
+  email: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["Pending", "Active"],
+    default: "Pending",
+  },
 });
 
 const User = model("User", userSchema, "users");

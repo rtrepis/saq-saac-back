@@ -11,6 +11,8 @@ let mongoServer: MongoMemoryServer;
 const userDB = {
   userName: "TestUser",
   password: "Validate",
+  status: "Active",
+  email: "verify@email.com",
 };
 
 beforeAll(async () => {
@@ -29,16 +31,19 @@ afterAll(async () => {
 });
 
 describe("Give a endpoint POST /users/register/ ", () => {
-  describe("When receive json with userName 'Evarsito' and password 'queen' ", () => {
+  describe("When receive json with userName 'Evarsito' and password 'queen' and data form ", () => {
     test("Then it should response with status 201 and massage 'user created'", async () => {
       const massage = "User successfully created";
-      const userRegister = { userName: "Evaristo", password: "queen" };
+      const userRegister = {
+        userName: "Evaristo",
+        password: "queen",
+        email: "evarist@email.com",
+      };
 
       const { body } = await request(app)
         .post("/users/register")
         .send(userRegister)
         .expect(201);
-
       expect(body).toHaveProperty("message", massage);
     });
 

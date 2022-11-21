@@ -9,7 +9,7 @@
     "start": "node .",
     "start:dev": "nodemon -q",
     "prepare": "husky install",
-    "test": "jest src",
+    "test": "jest src --passWithNoTests",
     "test-dev": "jest src --watchAll",
     "test-coverage": "jest src --coverage --watchAll=false"
   },
@@ -25,6 +25,8 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@types/morgan": "^1.9.3",
     "@types/node": "^18.7.1",
+    "@types/nodemailer": "^6.4.6",
+    "@types/nodemailer-sendgrid": "^1.0.0",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
@@ -54,6 +56,8 @@
     "express-validation": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.8.0",
+    "nodemailer-sendgrid": "^1.0.3"
   }
 }

@@ -6,6 +6,8 @@ export interface Jwt {
 export interface UserRegister {
   userName: string;
   password: string;
+  email: string;
+  confirmationCode: string;
 }
 
 export interface UserData {
@@ -15,6 +17,7 @@ export interface UserData {
   sequencesCreate: { id: string[] };
   email: string;
   status: "Pending" | "Active";
+  confirmationCode: string;
 }
 
 export interface UserJwtPayload {

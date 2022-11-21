@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import User from "../../../database/models/User";
 import CustomError from "../../../utils/CustomError";
-import registerUser from "./registerContoller";
+import registerUser from "./registerController";
 
 let mockUser = {
   userName: "TestUser",
   password: "Validate",
+  email: "email@validate.com",
 };
 const req = {
   body: mockUser,
@@ -36,6 +37,7 @@ describe("Given a function registerUser", () => {
       mockUser = {
         userName: "Ern",
         password: "",
+        email: "",
       };
       const testError = new CustomError(400, "", "Error creating new user");
       User.create = jest.fn().mockRejectedValue(testError);

@@ -19,11 +19,16 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   status: {
     type: String,
     enum: ["Pending", "Active"],
     default: "Pending",
+  },
+  confirmationCode: {
+    type: String,
+    required: true,
   },
 });
 

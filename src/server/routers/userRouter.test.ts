@@ -3,16 +3,20 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import connectDB from "../../database/connectDB";
 import app from "..";
-import { hashCreator } from "../../utils/auth";
+import { createToken, hashCreator } from "../../utils/auth";
 import User from "../../database/models/User";
+import { UserData } from "../../database/types/UsersInterfaces";
 
 let mongoServer: MongoMemoryServer;
 
-const userDB = {
+const userDB: UserData = {
   userName: "TestUser",
   password: "Validate",
-  status: "Active",
   email: "verify@email.com",
+  confirmationCode: "",
+  sequencesCreate: { id: [""] },
+  status: "Active",
+  id: "",
 };
 
 beforeAll(async () => {
@@ -21,6 +25,7 @@ beforeAll(async () => {
   await connectDB(mongoUrl);
 
   userDB.password = await hashCreator(userDB.password);
+  userDB.confirmationCode = await createToken(userDB.email);
   User.create(userDB);
 });
 
@@ -37,13 +42,14 @@ describe("Give a endpoint POST /users/register/ ", () => {
       const userRegister = {
         userName: "Evaristo",
         password: "queen",
-        email: "evarist@email.com",
+        email: "verify@email.com",
       };
 
       const { body } = await request(app)
         .post("/users/register")
         .send(userRegister)
         .expect(201);
+
       expect(body).toHaveProperty("message", massage);
     });
 

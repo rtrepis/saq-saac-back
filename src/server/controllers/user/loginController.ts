@@ -24,6 +24,10 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   let findUsers: Array<UserData>;
   try {
     findUsers = await User.find({ userName: user.userName });
+
+    if (findUsers[0].status === "Pending") {
+      res.status(403).json({ message: "Verify email, please" });
+    }
   } catch (error) {
     const finalError = new CustomError(
       403,

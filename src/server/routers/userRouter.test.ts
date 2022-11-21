@@ -3,14 +3,20 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import connectDB from "../../database/connectDB";
 import app from "..";
-import { hashCreator } from "../../utils/auth";
+import { createToken, hashCreator } from "../../utils/auth";
 import User from "../../database/models/User";
+import { UserData } from "../../database/types/UsersInterfaces";
 
 let mongoServer: MongoMemoryServer;
 
-const userDB = {
+const userDB: UserData = {
   userName: "TestUser",
   password: "Validate",
+  email: "verify@email.com",
+  confirmationCode: "",
+  sequencesCreate: { id: [""] },
+  status: "Active",
+  id: "",
 };
 
 beforeAll(async () => {
@@ -19,6 +25,7 @@ beforeAll(async () => {
   await connectDB(mongoUrl);
 
   userDB.password = await hashCreator(userDB.password);
+  userDB.confirmationCode = await createToken(userDB.email);
   User.create(userDB);
 });
 
@@ -29,10 +36,14 @@ afterAll(async () => {
 });
 
 describe("Give a endpoint POST /users/register/ ", () => {
-  describe("When receive json with userName 'Evarsito' and password 'queen' ", () => {
+  describe("When receive json with userName 'Evarsito' and password 'queen' and data form ", () => {
     test("Then it should response with status 201 and massage 'user created'", async () => {
       const massage = "User successfully created";
-      const userRegister = { userName: "Evaristo", password: "queen" };
+      const userRegister = {
+        userName: "Evaristo",
+        password: "queen",
+        email: "verify@email.com",
+      };
 
       const { body } = await request(app)
         .post("/users/register")

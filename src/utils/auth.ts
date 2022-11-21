@@ -11,7 +11,7 @@ export const hashCreator = (text: string) => {
 export const hashCompare = (text: string, hash: string) =>
   bcrypt.compare(text, hash);
 
-export const createToken = (payload: UserJwtPayload) =>
+export const createToken = (payload: UserJwtPayload | string) =>
   jwt.sign(payload, process.env.SECRET);
 
 export const verifyToken = (token: string) =>

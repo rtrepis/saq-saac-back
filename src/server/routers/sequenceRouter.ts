@@ -10,6 +10,7 @@ import authentication from "../middlewares/authentication";
 import SequenceJoi from "../models/SequenceJoi";
 import deleteId from "../controllers/sequence/sequencesControllerDeleteId";
 import updateId from "../controllers/sequence/sequenceControllerUpdate";
+import getSearch from "../controllers/sequence/sequencesControllerSearch";
 
 const sequencesRouter = express.Router();
 
@@ -34,5 +35,6 @@ sequencesRouter.put(
   validate(SequenceJoi, {}, { abortEarly: false }),
   updateId
 );
+sequencesRouter.get("/search/:word", getSearch);
 
 export default sequencesRouter;

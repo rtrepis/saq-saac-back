@@ -29,3 +29,12 @@ export interface UserLogin {
   userName: string;
   password: string;
 }
+
+export interface EmailForgot {
+  email: string;
+}
+
+export interface ResetPassword {
+  password: string;
+  code: string;
+}

@@ -1,11 +1,21 @@
 import express from "express";
 import { validate } from "express-validation";
+import forgot from "../controllers/user/forgotController";
 import loginUser from "../controllers/user/loginController";
 import registerUser from "../controllers/user/registerController";
-import verifyCode from "../controllers/user/verifyCode";
-import UserJoi from "../models/UserJoi";
+import reset from "../controllers/user/resetController";
+import verifyCode from "../controllers/user/verifyCodeController";
+import { ForgotJoi, ResetJoi, UserJoi } from "../models/UserJoi";
 
 const usersRouter = express.Router();
+
+usersRouter.put("/reset", validate(ResetJoi, {}, { abortEarly: false }), reset);
+
+usersRouter.put(
+  "/forgot",
+  validate(ForgotJoi, {}, { abortEarly: false }),
+  forgot
+);
 
 usersRouter.get("/email-verify/:confirmCode", verifyCode);
 

@@ -1,6 +1,6 @@
 import { Joi } from "express-validation";
 
-const UserJoi = {
+export const LoginJoi = {
   body: Joi.object({
     userName: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().min(3).max(30).required(),
@@ -15,5 +15,3 @@ export const RegisterJoi = {
     confirmationCode: Joi.string(),
   }),
 };
-
-export default UserJoi;

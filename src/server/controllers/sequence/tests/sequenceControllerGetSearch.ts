@@ -16,7 +16,6 @@ describe("Give a sequence controller getSearch", () => {
       };
       const next = jest.fn() as Partial<NextFunction>;
 
-      const status = 200;
       Sequence.find = jest.fn().mockReturnValue(searchWord);
 
       await getSearch(req as Request, res as Response, next as NextFunction);

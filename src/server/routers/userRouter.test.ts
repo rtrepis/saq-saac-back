@@ -5,16 +5,16 @@ import connectDB from "../../database/connectDB";
 import app from "..";
 import { createToken, hashCreator } from "../../utils/auth";
 import User from "../../database/models/User";
-import { UserData } from "../../database/types/UsersInterfaces";
+import { UserData, UserRegister } from "../../database/types/UsersInterfaces";
 
 let mongoServer: MongoMemoryServer;
 
 const userDB: UserData = {
   userName: "TestUser",
   password: "Validate",
-  email: "verify@email.com",
+  email: "verify@gmail.com",
   confirmationCode: "",
-  sequencesCreate: { id: [""] },
+  sequencesCreate: [],
   status: "Active",
   id: "",
 };
@@ -39,10 +39,11 @@ describe("Give a endpoint POST /users/register/ ", () => {
   describe("When receive json with userName 'Evarsito' and password 'queen' and data form ", () => {
     test("Then it should response with status 201 and massage 'user created'", async () => {
       const massage = "User successfully created";
-      const userRegister = {
+      const userRegister: UserRegister = {
         userName: "Evaristo",
         password: "queen",
-        email: "verify@email.com",
+        email: "validate@gmail.com",
+        confirmationCode: "codeForValidateToEmail",
       };
 
       const { body } = await request(app)
@@ -55,9 +56,9 @@ describe("Give a endpoint POST /users/register/ ", () => {
 
     describe("When it receives a request without password", () => {
       test("Then it should response with status 400 and a message 'Wrong data'", async () => {
-        const message = "User or password invalid";
+        const message = "Validation error";
         const userRegister = {
-          userName: "Evaristo",
+          userName: "TestUser",
           password: "",
         };
 

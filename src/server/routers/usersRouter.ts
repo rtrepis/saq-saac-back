@@ -5,7 +5,7 @@ import loginUser from "../controllers/user/loginController";
 import registerUser from "../controllers/user/registerController";
 import reset from "../controllers/user/resetController";
 import verifyCode from "../controllers/user/verifyCodeController";
-import { ForgotJoi, ResetJoi, UserJoi } from "../models/UserJoi";
+import { ForgotJoi, ResetJoi, LoginJoi, RegisterJoi } from "../models/UserJoi";
 
 const usersRouter = express.Router();
 
@@ -21,13 +21,13 @@ usersRouter.get("/email-verify/:confirmCode", verifyCode);
 
 usersRouter.post(
   "/register",
-  validate(UserJoi, {}, { abortEarly: false }),
+  validate(RegisterJoi, {}, { abortEarly: false }),
   registerUser
 );
 
 usersRouter.post(
   "/login",
-  validate(UserJoi, {}, { abortEarly: false }),
+  validate(LoginJoi, {}, { abortEarly: false }),
   loginUser
 );
 

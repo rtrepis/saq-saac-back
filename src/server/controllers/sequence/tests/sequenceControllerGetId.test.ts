@@ -34,7 +34,7 @@ describe("Given a sequence controller get Id", () => {
       };
 
       Sequence.findById = jest.fn().mockReturnThis();
-      Sequence.populate = jest.fn().mockReturnValue({ mockSequence });
+      Sequence.populate = jest.fn().mockReturnValue([{ mockSequence }]);
 
       await getId(req as Request, res as Response, next as NextFunction);
 
@@ -98,7 +98,7 @@ describe("Given a sequence controller get Id", () => {
   });
 
   describe("When verifyToken reject error", () => {
-    test("Then it should call the response status with 201", async () => {
+    test("Then it should call the next function with error", async () => {
       const expectNextWithError = new CustomError(
         500,
         "Server internal Error",

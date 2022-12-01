@@ -14,7 +14,7 @@ export interface UserData {
   id: string;
   userName: string;
   password: string;
-  sequencesCreate: { id: string[] };
+  sequencesCreate: [];
   email: string;
   status: "Pending" | "Active";
   confirmationCode: string;

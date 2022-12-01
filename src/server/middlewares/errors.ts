@@ -23,7 +23,7 @@ export const generalError = (
   debug(chalk.red(error.message));
 
   if (error instanceof ValidationError) {
-    errorMessage = "User or password invalid";
+    errorMessage = "Validation error";
     error.details.body.forEach((element) => {
       debug(chalk.red(element.message));
     });

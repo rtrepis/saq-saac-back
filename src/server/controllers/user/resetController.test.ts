@@ -22,7 +22,10 @@ describe("Give controller reset", () => {
   describe("When it received new password and correct validationCode", () => {
     test("Then is should response called with expectResponse", async () => {
       const req: Partial<Request> = {
-        body: { password: "newPassword", code: "validConfirmationCode" },
+        body: {
+          password: "newPassword",
+          code: "validConfirmationCode",
+        },
       };
       const expectResponse = {
         status: 200,

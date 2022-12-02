@@ -16,7 +16,7 @@ const forgot = async (req: Request, res: Response, next: NextFunction) => {
   const appUrl = process.env.APP_URL;
 
   const emailUser: EmailUser = {
-    email: req.body.email,
+    email: req.body.email.toString(),
   };
 
   try {

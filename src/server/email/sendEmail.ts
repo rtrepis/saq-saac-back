@@ -9,7 +9,7 @@ const sendEmail = async (email: string, subject: string, text: string) => {
   try {
     const transporter = nodeMailer.createTransport(
       nodemailerSendgrid({ apiKey: process.env.SENDGRID_API_KEY }),
-      { secure: true, requireTLS: true, port: 465 }
+      { secure: true, requireTLS: true, port: 465, secured: true }
     );
 
     await transporter.sendMail({

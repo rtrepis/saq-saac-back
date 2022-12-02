@@ -10,7 +10,6 @@ const reset = async (req: Request, res: Response, next: NextFunction) => {
   const debug = Debug("seqSaac:Reset:");
 
   const dataReset = req.body as ResetPassword;
-
   try {
     const findUser = await User.findOne({ confirmationCode: dataReset.code });
     findUser.password = await hashCreator(dataReset.password);
@@ -19,10 +18,10 @@ const reset = async (req: Request, res: Response, next: NextFunction) => {
     await User.replaceOne({ _id: findUser.id }, findUser);
 
     debug(chalk.green(findUser.userName));
-    res.status(200).json({ message: "Ok Reset password" });
+    res.status(200).json({ message: "Ok reset password" });
   } catch (error) {
     const resetError = new CustomError(
-      400,
+      403,
       error.message,
       "Error reset password"
     );

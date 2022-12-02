@@ -28,17 +28,22 @@ describe("Give controller forgot", () => {
       const req: Partial<Request> = {
         body: { email: "user@validate.com" },
       };
+      const expectResponse = {
+        status: 200,
+        json: { message: "Validate email, User is Pending" },
+      };
 
       User.findOne = jest.fn().mockResolvedValue(mockLoggedUser);
       User.replaceOne = jest.fn();
       await forgot(req as Request, res as Response, next as NextFunction);
 
-      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.status).toHaveBeenCalledWith(expectResponse.status);
+      expect(res.json).toHaveBeenCalledWith(expectResponse.json);
     });
   });
 
   describe("When it receives a unregistered email", () => {
-    test("Then it should NextFunction called with 403 code status", async () => {
+    test("Then it should NextFunction called with 403 Error", async () => {
       const req: Partial<Request> = {
         body: { email: "user@invalid.com" },
       };

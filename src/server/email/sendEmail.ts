@@ -8,11 +8,12 @@ const debug = Debug("seqSaac:sendEmail:");
 const sendEmail = async (email: string, subject: string, text: string) => {
   try {
     const transporter = nodeMailer.createTransport(
-      nodemailerSendgrid({ apiKey: process.env.SENDGRID_API_KEY })
+      nodemailerSendgrid({ apiKey: process.env.SENDGRID_API_KEY }),
+      { secure: true, requireTLS: true, port: 465 }
     );
 
     await transporter.sendMail({
-      from: "seqsaac@gmail.com",
+      from: process.env.SEND_EMAIL,
       to: email,
       subject,
       html: text,

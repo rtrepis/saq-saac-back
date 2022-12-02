@@ -14,8 +14,8 @@ const reset = async (req: Request, res: Response, next: NextFunction) => {
   const debug = Debug("seqSaac:Reset:");
 
   const dataReset: DataReset = {
-    password: req.body.password,
-    code: req.body.code,
+    password: req.body.password.toString(),
+    code: req.body.code.toString(),
   };
 
   try {

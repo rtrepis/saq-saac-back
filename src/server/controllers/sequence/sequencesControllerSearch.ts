@@ -9,7 +9,7 @@ const getSearch = async (req: Request, res: Response, next: NextFunction) => {
     const sequenceData = await Sequence.find({
       name: { $regex: searchWord, $options: "i" },
       privately: false,
-    }).exec();
+    });
 
     res.status(200).json({ sequences: sequenceData });
     return;

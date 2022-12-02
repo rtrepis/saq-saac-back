@@ -2,7 +2,7 @@ import chalk from "chalk";
 import Debug from "debug";
 import { NextFunction, Request, Response } from "express";
 import User from "../../../database/models/User";
-import { EmailForgot } from "../../../database/types/UsersInterfaces";
+import { EmailForgot, UserData } from "../../../database/types/UsersInterfaces";
 import { createToken } from "../../../utils/auth";
 import CustomError from "../../../utils/CustomError";
 import sendEmail from "../../email/sendEmail";
@@ -12,14 +12,15 @@ const forgot = async (req: Request, res: Response, next: NextFunction) => {
   const appUrl = process.env.APP_URL;
 
   const emailUser = req.body as EmailForgot;
+
   try {
-    const findUser = await User.findOne({ email: emailUser.email });
+    const findUser: UserData = await User.findOne({ email: emailUser.email });
     findUser.confirmationCode = await createToken(emailUser.email);
     findUser.status = "Pending";
     await User.replaceOne({ _id: findUser.id }, findUser);
 
     sendEmail(
-      emailUser.email,
+      findUser.email,
       "Restaurar contrasenya",
       `<h1>Restablir de Contrasenya</h1>
         <h2>Hola ${findUser.userName}</h2>

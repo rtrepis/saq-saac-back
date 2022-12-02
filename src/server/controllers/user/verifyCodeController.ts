@@ -14,9 +14,9 @@ const verifyCode = async (req: Request, res: Response, next: NextFunction) => {
     res.status(200).json({ message: "Validate email, User is active" });
   } catch (error) {
     const verifyCodeError = new CustomError(
-      400,
-      "Verify code not found",
-      "Error code"
+      403,
+      error.message,
+      "Error verify confirmation code"
     );
     next(verifyCodeError);
   }

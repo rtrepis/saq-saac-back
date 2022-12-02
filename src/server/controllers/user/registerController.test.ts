@@ -18,7 +18,7 @@ const res = {
 } as Partial<Response>;
 
 describe("Given a function registerUser", () => {
-  describe("When it receives a response object with 'userName' and 'password'", () => {
+  describe("When it receives a request object with 'userName' and 'password'", () => {
     test("Then it should called with 201 status code and with expectMessage", async () => {
       const expectMessage = { message: "User successfully created" };
       const status = 201;

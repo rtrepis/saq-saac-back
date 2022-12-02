@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import User from "../../../database/models/User";
 import CustomError from "../../../utils/CustomError";
-import forgot from "./forgotController";
 import verifyCode from "./verifyCodeController";
 
 const mockLoggedUser = {

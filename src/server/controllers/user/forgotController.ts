@@ -7,12 +7,16 @@ import { createToken } from "../../../utils/auth";
 import CustomError from "../../../utils/CustomError";
 import sendEmail from "../../email/sendEmail";
 
+interface EmailUser {
+  email: string;
+}
+
 const forgot = async (req: Request, res: Response, next: NextFunction) => {
   const debug = Debug("seqSaac:forgot");
   const appUrl = process.env.APP_URL;
 
-  const emailUser = {
-    email: req.body.email.toSting(),
+  const emailUser: EmailUser = {
+    email: req.body.email,
   };
 
   try {

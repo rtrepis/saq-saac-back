@@ -5,12 +5,17 @@ import User from "../../../database/models/User";
 import { hashCreator } from "../../../utils/auth";
 import CustomError from "../../../utils/CustomError";
 
+interface DataReset {
+  password: string;
+  code: string;
+}
+
 const reset = async (req: Request, res: Response, next: NextFunction) => {
   const debug = Debug("seqSaac:Reset:");
 
-  const dataReset = {
-    password: req.body.password.toSting(),
-    code: req.body.code.toString(),
+  const dataReset: DataReset = {
+    password: req.body.password,
+    code: req.body.code,
   };
 
   try {

@@ -19,10 +19,8 @@ const sendEmail = async (email: string, subject: string, text: string) => {
     });
 
     debug(chalk.blueBright(email));
-    return true;
   } catch (error) {
     debug(chalk.blueBright(error));
-    return false;
   }
 };
 

@@ -2,16 +2,22 @@ import chalk from "chalk";
 import Debug from "debug";
 import { NextFunction, Request, Response } from "express";
 import User from "../../../database/models/User";
-import { EmailForgot, UserData } from "../../../database/types/UsersInterfaces";
+import { UserData } from "../../../database/types/UsersInterfaces";
 import { createToken } from "../../../utils/auth";
 import CustomError from "../../../utils/CustomError";
 import sendEmail from "../../email/sendEmail";
+
+interface EmailUser {
+  email: string;
+}
 
 const forgot = async (req: Request, res: Response, next: NextFunction) => {
   const debug = Debug("seqSaac:forgot");
   const appUrl = process.env.APP_URL;
 
-  const emailUser = req.body as EmailForgot;
+  const emailUser: EmailUser = {
+    email: req.body.email,
+  };
 
   try {
     const findUser: UserData = await User.findOne({ email: emailUser.email });

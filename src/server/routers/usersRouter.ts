@@ -9,9 +9,13 @@ import { ForgotJoi, ResetJoi, LoginJoi, RegisterJoi } from "../models/UserJoi";
 
 const usersRouter = express.Router();
 
-usersRouter.put("/reset", validate(ResetJoi, {}, { abortEarly: false }), reset);
+usersRouter.patch(
+  "/reset",
+  validate(ResetJoi, {}, { abortEarly: false }),
+  reset
+);
 
-usersRouter.put(
+usersRouter.post(
   "/forgot",
   validate(ForgotJoi, {}, { abortEarly: false }),
   forgot

@@ -2,14 +2,17 @@ import chalk from "chalk";
 import Debug from "debug";
 import { NextFunction, Request, Response } from "express";
 import User from "../../../database/models/User";
-import { ResetPassword } from "../../../database/types/UsersInterfaces";
 import { hashCreator } from "../../../utils/auth";
 import CustomError from "../../../utils/CustomError";
 
 const reset = async (req: Request, res: Response, next: NextFunction) => {
   const debug = Debug("seqSaac:Reset:");
 
-  const dataReset = req.body as ResetPassword;
+  const dataReset = {
+    password: req.body.password.toSting(),
+    code: req.body.code.toString(),
+  };
+
   try {
     const findUser = await User.findOne({ confirmationCode: dataReset.code });
     findUser.password = await hashCreator(dataReset.password);

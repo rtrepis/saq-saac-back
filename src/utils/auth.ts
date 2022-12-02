@@ -1,6 +1,7 @@
 import "../loadEnvironment";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import jwtDecode from "jwt-decode";
 import { UserJwtPayload } from "../database/types/UsersInterfaces";
 
 export const hashCreator = (text: string) => {
@@ -16,3 +17,14 @@ export const createToken = (payload: UserJwtPayload | string) =>
 
 export const verifyToken = (token: string) =>
   jwt.verify(token, process.env.SECRET);
+
+export const decodeToken = (token: string) => {
+  const payloadTokenForgot: {
+    email: string;
+    iat: number;
+  } = jwtDecode(token);
+
+  return {
+    email: payloadTokenForgot.email,
+  };
+};

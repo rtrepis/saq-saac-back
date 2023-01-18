@@ -3,7 +3,9 @@ import Sequence from "../../../../database/models/Sequence";
 import { getAllSequencePublic } from "../sequencesController";
 
 describe("Given a sequence controller", () => {
-  const req: Partial<Request> = {};
+  let req: Partial<Request> = {
+    query: {},
+  };
   const res: Partial<Response> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
@@ -25,16 +27,23 @@ describe("Given a sequence controller", () => {
       expect(res.status).toHaveBeenCalledWith(status);
     });
   });
-  describe("When database getting throw an error", () => {
-    test("Then call next function and reject error", async () => {
-      Sequence.find = jest.fn().mockRejectedValue("");
+
+  describe("When called with request query params", () => {
+    test("Then called the response with json call 200", async () => {
+      req = {
+        query: { pageSize: "3", page: "1" },
+      };
+      const status = 200;
+
+      Sequence.find = jest.fn();
+
       await getAllSequencePublic(
         req as Request,
         res as Response,
         next as NextFunction
       );
 
-      expect(next).toHaveBeenCalled();
+      expect(res.status).toHaveBeenCalledWith(status);
     });
   });
 });

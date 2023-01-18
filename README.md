@@ -8,9 +8,9 @@
 
   - req.body.json = { "userName": string , "password": string }
 
-- [GET] sequence/
+- [GET] sequence/?pageSize=3&page=1
 
-  - res.body.json = {sequences: {"name": sting, "pictograms": number[idPictogram], "id": string, "privately": false } }
+  - res.body.json = {sequences:[ {"name": sting, "pictograms": number[idPictogram], "id": string, "privately": false }]}
 
 - [GET] sequence/:id
 
@@ -36,3 +36,10 @@
   - req.athoritzation = "Bearer validateToken"
 
   - res.body.json = { message: "Sequence has been deleted" }
+
+- [PUT] sequences/update/:id
+
+  - req.athoritzation = "Bearer validateToken"
+  - req.body.json = {"name": sting, "pictograms": number[idPictogram], "id": string, "privately": boolean}
+
+  - res.body.json = {"sequence": { "name", "pictograms", "privately", "owner", "id"}}

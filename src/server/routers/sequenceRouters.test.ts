@@ -29,7 +29,9 @@ afterAll(async () => {
 describe("Give a endpoint GET /sequences/ ", () => {
   describe("When receive a request", () => {
     test("Then it should response with status 200 and json", async () => {
-      const { body } = await request(app).get("/sequences/").expect(200);
+      const { body } = await request(app)
+        .get("/sequences?pageSize=3&page=1")
+        .expect(200);
 
       expect(body);
     });

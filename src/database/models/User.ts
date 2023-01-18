@@ -18,7 +18,6 @@ const userSchema = new Schema({
   ],
   email: {
     type: String,
-    required: true,
     unique: true,
   },
   status: {
@@ -28,7 +27,6 @@ const userSchema = new Schema({
   },
   confirmationCode: {
     type: String,
-    required: true,
   },
 });
 

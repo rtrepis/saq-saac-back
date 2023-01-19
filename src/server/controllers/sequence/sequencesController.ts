@@ -18,6 +18,8 @@ export const getAllSequencePublic = async (
       sequences = await Sequence.find({ privately: false })
         .limit(pageSize)
         .skip(pageSize * page);
+    } else {
+      sequences = await Sequence.find({ privately: false });
     }
   } catch (error) {
     const getAllError = new CustomError(

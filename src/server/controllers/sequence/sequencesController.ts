@@ -10,6 +10,7 @@ export const getAllSequencePublic = async (
   next: NextFunction
 ) => {
   let sequences;
+  let count;
   const pageSize = req.query.pageSize ? Number(req.query.pageSize) : 0;
   const page = req.query.page ? Number(req.query.page) : 0;
 
@@ -17,10 +18,13 @@ export const getAllSequencePublic = async (
     if (pageSize !== 0 || NaN) {
       sequences = await Sequence.find({ privately: false })
         .limit(pageSize)
-        .skip(pageSize * page);
+        .skip(pageSize * page)
+        .exec();
     } else {
       sequences = await Sequence.find({ privately: false });
     }
+
+    count = await Sequence.count().exec();
   } catch (error) {
     const getAllError = new CustomError(
       404,
@@ -29,7 +33,7 @@ export const getAllSequencePublic = async (
     );
     next(getAllError);
   }
-  res.status(200).json({ sequences });
+  res.status(200).json({ sequences, count });
 };
 
 export const createSequence = async (

@@ -15,16 +15,15 @@ export const getAllSequencePublic = async (
   const page = req.query.page ? Number(req.query.page) : 0;
 
   try {
+    sequences = await Sequence.find({ privately: false });
+    count = sequences.length;
+
     if (pageSize !== 0 || NaN) {
-      sequences = await Sequence.find({ privately: false })
+      sequences = await Sequence.find()
         .limit(pageSize)
         .skip(pageSize * page)
         .exec();
-    } else {
-      sequences = await Sequence.find({ privately: false });
     }
-
-    count = await Sequence.count().exec();
   } catch (error) {
     const getAllError = new CustomError(
       404,
@@ -33,7 +32,7 @@ export const getAllSequencePublic = async (
     );
     next(getAllError);
   }
-  res.status(200).json({ sequences, count });
+  res.status(200).json({ count, sequences });
 };
 
 export const createSequence = async (

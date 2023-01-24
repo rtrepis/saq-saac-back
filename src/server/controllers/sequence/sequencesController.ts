@@ -19,7 +19,7 @@ export const getAllSequencePublic = async (
     count = sequences.length;
 
     if (pageSize !== 0 || NaN) {
-      sequences = await Sequence.find()
+      sequences = await Sequence.find({ privately: false })
         .limit(pageSize)
         .skip(pageSize * page)
         .exec();

@@ -36,7 +36,7 @@ const forgot = async (req: Request, res: Response, next: NextFunction) => {
     );
 
     debug(chalk.green(findUser.userName));
-    res.status(200).json({ message: "Validate email, User is Pending" });
+    res.status(200).json({ message: "Please, validate email" });
   } catch (error) {
     const forgotError = new CustomError(
       400,

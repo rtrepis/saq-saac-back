@@ -12,7 +12,6 @@ import CustomError from "../../../utils/CustomError";
 
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   const debug = Debug("seqSaac:loginUser:");
-
   const user = req.body as UserLogin;
 
   const userError = new CustomError(
@@ -20,13 +19,20 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     "User not found",
     "User or password invalid"
   );
+  const userPending = new CustomError(
+    403,
+    "User pending",
+    "verify email, please"
+  );
 
   let findUsers: Array<UserData>;
   try {
     findUsers = await User.find({ userName: user.userName });
 
     if (findUsers[0].status === "Pending") {
-      res.status(403).json({ message: "Verify email, please" });
+      debug(chalk.green(`${findUsers[0].userName}`));
+      next(userPending);
+      return;
     }
   } catch (error) {
     const finalError = new CustomError(
@@ -45,7 +51,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     );
     if (!isPasswordValid) {
       userError.message = "Invalid password";
-      debug(chalk.red(findUsers[0].userName));
+      debug(chalk.red(`${findUsers[0].userName}: ${userError.message}`));
       next(userError);
       return;
     }

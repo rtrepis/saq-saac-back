@@ -77,16 +77,18 @@ describe("Given a function loginUser", () => {
   });
 
   describe("When it receives a response with user not verify email", () => {
-    test("Then is should called return with status 403", async () => {
+    test("Then is should called next", async () => {
       mockUser = { ...mockUser, userName: "TestUser" };
       mockLoggedUser = { ...mockLoggedUser, status: "Pending" };
+
       User.find = jest.fn().mockResolvedValue([mockLoggedUser]);
-      const status = 403;
-      const next = () => {};
+      const testError = new CustomError(400, "User pending", "");
+
+      const next = jest.fn();
 
       await loginUser(req as Request, res as Response, next as NextFunction);
 
-      expect(res.status).toHaveBeenCalledWith(status);
+      expect(next).toHaveBeenCalledWith(testError);
     });
   });
 });

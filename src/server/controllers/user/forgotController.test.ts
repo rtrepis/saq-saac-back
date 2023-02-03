@@ -30,7 +30,7 @@ describe("Give controller forgot", () => {
       };
       const expectResponse = {
         status: 200,
-        json: { message: "Validate email, User is Pending" },
+        json: { message: "Please, validate email" },
       };
 
       User.findOne = jest.fn().mockResolvedValue(mockLoggedUser);

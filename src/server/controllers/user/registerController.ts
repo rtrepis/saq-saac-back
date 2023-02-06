@@ -23,7 +23,8 @@ const registerUser = async (
 
   try {
     const user: UserRegister = req.body;
-    const isRegister = await User.find({ email: req.body.email });
+    const email = req.body.email.toString();
+    const isRegister = await User.find({ email });
 
     if (isRegister.length > 0) {
       next(errorEmailDuplicate);

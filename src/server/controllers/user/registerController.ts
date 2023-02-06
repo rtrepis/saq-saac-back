@@ -15,8 +15,18 @@ const registerUser = async (
   const debug = Debug("seqSaac:registerUser:");
   const appUrl = process.env.APP_URL;
 
+  const errorEmailDuplicate = new CustomError(
+    403,
+    "email duplicate",
+    "invalid register"
+  );
+
   try {
     const user: UserRegister = req.body;
+    if ((await User.find({ email: user.email })).length > 0) {
+      next(errorEmailDuplicate);
+      return;
+    }
     user.password = await hashCreator(user.password);
     user.confirmationCode = await createToken(user.email);
     await User.create(user);

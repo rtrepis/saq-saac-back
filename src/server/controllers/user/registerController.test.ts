@@ -17,12 +17,23 @@ const res = {
   json: jest.fn(),
 } as Partial<Response>;
 
+jest.mock("../../../utils/auth", () => ({
+  ...jest.requireActual("../../../utils/auth"),
+  createToken: () => jest.fn().mockReturnValue("#"),
+  hashCreator: () => jest.fn().mockReturnValue("hashPassword"),
+}));
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Given a function registerUser", () => {
   describe("When it receives a request object with 'userName' and 'password'", () => {
     test("Then it should called with 201 status code and with expectMessage", async () => {
       const expectMessage = { message: "User successfully created" };
       const status = 201;
       const next = () => {};
+      User.find = jest.fn().mockResolvedValue([]);
       User.create = jest.fn().mockResolvedValue(mockUser);
 
       await registerUser(req as Request, res as Response, next as NextFunction);
@@ -40,7 +51,30 @@ describe("Given a function registerUser", () => {
         email: "",
       };
       const testError = new CustomError(400, "", "Error creating new user");
+      User.find = jest.fn().mockResolvedValue([]);
       User.create = jest.fn().mockRejectedValue(testError);
+      const next = jest.fn();
+
+      await registerUser(req as Request, res as Response, next as NextFunction);
+
+      expect(next).toHaveBeenCalledWith(testError);
+    });
+  });
+
+  describe("When with a email duplicate in database", () => {
+    test("Then it should reject to error", async () => {
+      const testError = new CustomError(
+        403,
+        "email duplicate",
+        "invalid register"
+      );
+      const userDB = {
+        userName: "TestInDB",
+        password: "SameEmail",
+        email: "email@validate.com",
+      };
+
+      User.find = jest.fn().mockResolvedValue([userDB]);
       const next = jest.fn();
 
       await registerUser(req as Request, res as Response, next as NextFunction);

@@ -16,3 +16,5 @@ export const createToken = (payload: UserJwtPayload | string) =>
 
 export const verifyToken = (token: string) =>
   jwt.verify(token, process.env.SECRET);
+
+export const decodeToken = (token: string) => jwt.decode(token);
